@@ -1,20 +1,37 @@
-import { Injectable } from '@nestjs/common'
-import { Cat } from '../graphql.schema'
+import { Injectable, Inject } from '@nestjs/common'
+import { Repository } from 'typeorm'
+import uuidv4 from 'uuid/v4'
+import { Cat } from './entity/cats.entity'
+import { CreateCatInput } from '../schema/cats.schema'
 
 @Injectable()
 export class CatsService {
-  private readonly cats: Cat[] = [{ id: 1, name: 'Cat', age: 5 }]
+  constructor(
+    @Inject('CatRepositoryToken')
+    private readonly catRepository: Repository<Cat>,
+  ) {}
 
-  create(cat: Cat): Cat {
-    this.cats.push(cat)
-    return cat
+  async create(cat: Cat): Promise<Cat> {
+    cat._id = uuidv4()
+    console.log(cat)
+    return await this.catRepository.save(cat)
   }
 
-  findAll(): Cat[] {
-    return this.cats
+  async update(cat: Cat): Promise<Cat> {
+    await this.catRepository.update({ _id: cat._id }, cat)
+    return await this.catRepository.findOne({ _id: cat._id })
   }
 
-  findOneById(id: number): Cat {
-    return this.cats.find(cat => cat.id === id)
+  async delete(_id: string): Promise<Cat|boolean> {
+    await this.catRepository.delete({ _id })
+    return true
+  }
+
+  async getOne(_id: string): Promise<Cat> {
+    return await this.catRepository.findOne({ _id })
+  }
+
+  async getAll(): Promise<Cat[]> {
+    return await this.catRepository.find()
   }
 }
