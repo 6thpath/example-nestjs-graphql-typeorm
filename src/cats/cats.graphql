@@ -9,15 +9,23 @@ input CreateCatInput {
   age: Int
 }
 
+input UpdateCatInput {
+  _id: String!
+  name: String
+  age: Int
+}
+
 type Query {
   getCats: [Cat]
-  cat(_id: ID!): Cat
+  getCat(_id: ID!): Cat
 }
 
 type Mutation {
-  createCat(createCatInput: CreateCatInput): Cat
+  createCat(createCatInput: CreateCatInput): Cat!
+  updateCat(updateCatInput: UpdateCatInput!): Cat!
+  deleteCat(_id: String!): Cat
 }
 
 type Subscription {
-  catCreated: Cat
+  catEvent: Cat
 }

@@ -3,6 +3,12 @@ export class CreateCatInput {
   age?: number
 }
 
+export class UpdateCatInput {
+  _id: string
+  name?: string
+  age?: number
+}
+
 export class Cat {
   _id?: string
   name?: string
@@ -23,8 +29,10 @@ export abstract class IQuery {
 
 export abstract class IMutation {
   abstract createCat(createCatInput?: CreateCatInput): Cat | Promise<Cat>
+  abstract updateCat(updateCatInput: UpdateCatInput): Cat | Promise<Cat>
+  abstract deleteCat(_id: string): Cat | Promise<Cat>
 }
 
 export abstract class ISubscription {
-  abstract catCreated(): Cat | Promise<Cat>
+  abstract catEvent(): Cat | Promise<Cat>
 }

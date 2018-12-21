@@ -2,7 +2,8 @@ import { Module } from '@nestjs/common'
 import { AppController } from './app.controller'
 import { AppService } from './app.service'
 import { GraphQLModule } from '@nestjs/graphql'
-import { join } from 'path'
+// import { join } from 'path'
+
 import { CatsModule } from './cats/cats.module'
 
 @Module({
@@ -11,10 +12,10 @@ import { CatsModule } from './cats/cats.module'
     GraphQLModule.forRoot({
       typePaths: ['./**/*.graphql'],
       installSubscriptionHandlers: true,
-      definitions: {
-        path: join(process.cwd(), 'src/graphql.schema.ts'),
-        outputAs: 'class'
-      },
+      // definitions: {
+      //   path: join(process.cwd(), 'src/schema/index.schema.ts'),
+      //   outputAs: 'class'
+      // },
       playground: {
         settings: {
           'general.betaUpdates': false,
