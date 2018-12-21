@@ -1,10 +1,10 @@
-import { UseGuards, Injectable, Inject } from '@nestjs/common'
+import { UseGuards, Inject } from '@nestjs/common'
 import { Repository } from 'typeorm'
 import { v4 as uuid } from 'uuid'
 import { Args, Mutation, Query, Resolver, Subscription } from '@nestjs/graphql'
 import { PubSub } from 'graphql-subscriptions'
 import { CatsGuard } from './cats.guard'
-import { Cat, CreateCatInput, UpdateCatInput } from '../schema/cats.schema'
+import { Cat, CreateCatInput, UpdateCatInput } from '../../schema/cats.schema'
 
 const pubSub = new PubSub();
 

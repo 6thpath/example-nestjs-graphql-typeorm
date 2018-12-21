@@ -1,0 +1,25 @@
+type Owner {
+  _id: ID
+  name: String
+  cats: [Cat]
+}
+
+input CreateOwnerInput {
+  name: String!
+}
+
+input UpdateOwnerInput {
+  _id: ID!
+  name: String
+}
+
+type Query {
+  getOwners: [Owner]
+  getOwner(_id: ID!): Owner
+}
+
+type Mutation {
+  createOwner(createOwnerInput: CreateOwnerInput!): Owner!
+  updateOwner(updateOwnerInput: UpdateOwnerInput!): Owner!
+  deleteOwner(_id: ID!): Owner
+}

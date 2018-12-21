@@ -1,5 +1,5 @@
 type Cat {
-  _id: String
+  _id: ID
   name: String
   age: Int
 }
@@ -10,7 +10,7 @@ input CreateCatInput {
 }
 
 input UpdateCatInput {
-  _id: String!
+  _id: ID!
   name: String
   age: Int
 }

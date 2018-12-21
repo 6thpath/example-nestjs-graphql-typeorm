@@ -4,11 +4,13 @@ import { AppService } from './app.service'
 import { GraphQLModule } from '@nestjs/graphql'
 // import { join } from 'path'
 
-import { CatsModule } from './cats/cats.module'
+import { CatsModule } from './modules/cats/cats.module'
+import { OwnersModule } from './modules/owners/owners.module'
 
 @Module({
   imports: [
     CatsModule,
+    OwnersModule,
     GraphQLModule.forRoot({
       typePaths: ['./**/*.graphql'],
       installSubscriptionHandlers: true,
