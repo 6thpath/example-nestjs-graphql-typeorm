@@ -1,7 +1,7 @@
 type Owner {
   _id: ID
   name: String
-  cats: [Cat]
+  # cats: [Cat]
 }
 
 input CreateOwnerInput {
@@ -19,7 +19,7 @@ type Query {
 }
 
 type Mutation {
-  createOwner(createOwnerInput: CreateOwnerInput!): Owner!
-  updateOwner(updateOwnerInput: UpdateOwnerInput!): Owner!
+  createOwner(createOwnerInput: CreateOwnerInput!): Owner
+  updateOwner(updateOwnerInput: UpdateOwnerInput!): Owner
   deleteOwner(_id: ID!): Owner
 }
