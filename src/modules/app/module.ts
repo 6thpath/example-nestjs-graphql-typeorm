@@ -29,6 +29,9 @@ import { OwnersModule } from '../owners/module'
           'request.credentials': 'omit', // possible values: 'omit', 'include', 'same-origin'
           'tracing.hideTracingResponse': true
         }
+      },
+      formatError: (error: any) => {
+        return { message: error.message, httpCode: +error.extensions.code }
       }
     })
   ],

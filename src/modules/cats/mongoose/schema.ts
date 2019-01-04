@@ -2,7 +2,7 @@ import * as mongoose from 'mongoose'
 
 export const catsSchema = new mongoose.Schema({
   _id: {
-    type: mongoose.Schema.Types.ObjectId
+    type: String
   },
   name: {
     type: String

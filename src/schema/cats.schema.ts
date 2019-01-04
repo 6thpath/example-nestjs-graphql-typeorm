@@ -1,3 +1,5 @@
+import { ApolloError } from 'apollo-server-express'
+
 export class CreateCatInput {
   name?: string
   age?: number
@@ -22,16 +24,16 @@ export class Cat {
 }
 
 export abstract class IQuery {
-  abstract getCats(): Cat[] | Promise<Cat[]>
-  abstract getCat(_id: string): Cat | Promise<Cat>
+  abstract getCats(): Cat[] | Promise<Cat[]|ApolloError> | ApolloError
+  abstract getCat(_id: string): Cat | Promise<Cat|ApolloError> | ApolloError
 }
 
 export abstract class IMutation {
-  abstract createCat(createCatInput?: CreateCatInput): Cat | Promise<Cat>
-  abstract updateCat(updateCatInput: UpdateCatInput): Cat | Promise<Cat>
-  abstract deleteCat(_id: string): Cat | Promise<Cat>
+  abstract createCat(createCatInput?: CreateCatInput): Cat | Promise<Cat|ApolloError> | ApolloError
+  abstract updateCat(updateCatInput: UpdateCatInput): Cat | Promise<Cat|ApolloError> | ApolloError
+  abstract deleteCat(_id: string): Cat | Promise<Cat|ApolloError> | ApolloError
 }
 
 export abstract class ISubscription {
-  abstract catEvent(): Cat | Promise<Cat>
+  abstract catEvent(): Cat | Promise<Cat|ApolloError> | ApolloError
 }

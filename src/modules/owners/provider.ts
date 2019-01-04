@@ -8,9 +8,13 @@ import { ownerSchema } from './mongoose/schema'
 
 export const OwnersProvider = [
   {
-    provide: 'OwnerRepositoryToken',
+    provide: 'OwnerToken',
+    // TypeORM
     // useFactory: (connection: Connection) => connection.getRepository(Owner),
+
+    // Mongoose
     useFactory: (connection: Connection) => connection.model('Owner', ownerSchema),
+
     inject: ['DbConnectionToken'],
   },
 ];

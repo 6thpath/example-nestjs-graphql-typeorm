@@ -8,7 +8,7 @@ import { Cat } from '../../schema/cats.schema'
 @Resolver('Owner')
 export class OwnersResolvers {
   constructor(
-    @Inject('OwnerRepositoryToken')
+    @Inject('OwnerToken')
     private readonly ownerRepository: Repository<Owner>,
     // @Inject('CatRepositoryToken')
     // private readonly catRepository: Repository<Cat>

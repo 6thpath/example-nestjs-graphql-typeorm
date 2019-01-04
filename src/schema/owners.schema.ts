@@ -1,3 +1,5 @@
+import { ApolloError } from 'apollo-server-express'
+
 export class CreateOwnerInput {
   name?: string
 }
@@ -18,13 +20,12 @@ export class Owner {
 }
 
 export abstract class IQuery {
-  abstract getOwners(): Owner[] | Promise<Owner[]>
-
-  abstract getOwner(_id: string): Owner | Promise<Owner>
+  abstract getOwners(): Owner[] | Promise<Owner[]|ApolloError> | ApolloError
+  abstract getOwner(_id: string): Owner | Promise<Owner|ApolloError> | ApolloError
 }
 
 export abstract class IMutation {
-  abstract createOwner(createOwnerInput: CreateOwnerInput): Owner | Promise<Owner>
-  abstract updateOwner(updateOwnerInput: UpdateOwnerInput): Owner | Promise<Owner>
-  abstract deleteOwner(_id: string): Owner | Promise<Owner>
+  abstract createOwner(createOwnerInput: CreateOwnerInput): Owner | Promise<Owner|ApolloError> | ApolloError
+  abstract updateOwner(updateOwnerInput: UpdateOwnerInput): Owner | Promise<Owner|ApolloError> | ApolloError
+  abstract deleteOwner(_id: string): Owner | Promise<Owner|ApolloError> | ApolloError
 }
