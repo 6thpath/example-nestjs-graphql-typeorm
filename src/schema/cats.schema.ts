@@ -23,7 +23,6 @@ export class Cat {
 
 export abstract class IQuery {
   abstract getCats(): Cat[] | Promise<Cat[]>
-
   abstract getCat(_id: string): Cat | Promise<Cat>
 }
 

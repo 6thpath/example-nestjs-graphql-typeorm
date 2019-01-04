@@ -1,11 +1,11 @@
 import { Module } from '@nestjs/common'
-import { AppController } from './app.controller'
-import { AppService } from './app.service'
+import { AppController } from './controller'
+import { AppService } from './service'
 import { GraphQLModule } from '@nestjs/graphql'
 // import { join } from 'path'
 
-import { CatsModule } from './modules/cats/cats.module'
-import { OwnersModule } from './modules/owners/owners.module'
+import { CatsModule } from '../cats/module'
+import { OwnersModule } from '../owners/module'
 
 @Module({
   imports: [
@@ -33,7 +33,7 @@ import { OwnersModule } from './modules/owners/owners.module'
     })
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService]
 })
 
 export class ApplicationModule {}

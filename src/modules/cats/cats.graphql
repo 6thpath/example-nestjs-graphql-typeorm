@@ -23,7 +23,7 @@ type Query {
 type Mutation {
   createCat(createCatInput: CreateCatInput): Cat!
   updateCat(updateCatInput: UpdateCatInput!): Cat!
-  deleteCat(_id: String!): Cat
+  deleteCat(_id: String!): Cat!
 }
 
 type Subscription {
