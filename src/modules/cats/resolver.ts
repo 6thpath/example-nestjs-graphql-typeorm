@@ -20,7 +20,7 @@ export class CatsResolver {
   }
 
   @Query('getCat')
-  async getCat(_id: string) {
+  async getCat(@Args('_id') _id: string) {
     return await this.catsService.findOneOnly(_id)
   }
 
@@ -39,7 +39,7 @@ export class CatsResolver {
   }
 
   @Mutation('deleteCat')
-  async delete( _id: string) {
+  async delete(@Args('_id') _id: string) {
     const deletedCat = await this.catsService.delete(_id)
     pubSub.publish('catDeleted', { catEvent: deletedCat })
     return deletedCat

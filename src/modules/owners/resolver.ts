@@ -6,10 +6,7 @@ import { OwnersService } from './service'
 @Resolver('Owner')
 export class OwnersResolver {
   constructor(
-    @Inject('OwnerToken')
     private readonly ownersService: OwnersService
-    // @Inject('CatToken')
-    // private readonly catRepository: Repository<Cat>
   ) {}
 
   // @ResolveProperty()
@@ -24,7 +21,7 @@ export class OwnersResolver {
   }
 
   @Query('getOwner')
-  async getOwner(_id: string) {
+  async getOwner(@Args('_id') _id: string) {
     return await this.ownersService.findOneOnly(_id)
   }
 
@@ -39,7 +36,7 @@ export class OwnersResolver {
   }
 
   @Mutation('deleteOwner')
-  async delete(_id: string) {
+  async delete(@Args('_id') _id: string) {
     return await this.ownersService.delete(_id)
   }
 }
